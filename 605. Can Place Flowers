@@ -1,0 +1,32 @@
+You have a long flowerbed in which some of the plots are planted, and some are not. However, flowers cannot be planted in adjacent plots.
+Given an integer array flowerbed containing 0's and 1's, 
+where 0 means empty and 1 means not empty, and an integer n, return true if n new flowers can be planted in the flowerbed without violating the no-adjacent-flowers rule and false otherwise.
+
+Example 1:
+Input: flowerbed = [1,0,0,0,1], n = 1
+Output: true
+
+Example 2:
+Input: flowerbed = [1,0,0,0,1], n = 2
+Output: false
+
+************* SOLUTION CODE *************
+class Solution:
+    def canPlaceFlowers(self, flowerbed: List[int], n: int) -> bool:
+        bed = flowerbed
+        bed.insert(0, 0)
+        bed.append(0)
+        possible = 0
+        length = len(bed)
+        for el in range(1, length - 1):
+            if n == 0 :
+               return True
+            else:
+                if bed[el - 1] == 0 and bed[el + 1] == 0 and bed[el] == 0:
+                    bed[el] = 1
+                    possible += 1
+
+        if possible >= n:
+            return True
+        return False
+        
