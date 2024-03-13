@@ -1,0 +1,30 @@
+Given an integer array nums, return true if there exists a triple of indices (i, j, k) such that i < j < k and nums[i] < nums[j] < nums[k]. 
+If no such indices exists, return false.
+
+Example 1:
+Input: nums = [1,2,3,4,5]
+Output: true
+Explanation: Any triplet where i < j < k is valid.
+
+Example 2:
+Input: nums = [5,4,3,2,1]
+Output: false
+Explanation: No triplet exists.
+
+********** MY SOLUTION **************
+
+class Solution:
+    def increasingTriplet(self, nums: List[int]) -> bool:
+        n = len(nums)
+        if n <= 2:
+            return False
+            
+        el_i , el_j = inf, inf
+        for el_k in nums:
+            if el_j < el_k:
+                return True
+            if el_k <= el_i:
+                el_i = el_k
+            else:
+                el_j = el_k
+        return False
